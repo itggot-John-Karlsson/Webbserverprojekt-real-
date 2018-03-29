@@ -1,0 +1,25 @@
+﻿1. Registrera användare /
+2. Loggain användare /
+3. Skapa projekt /
+3. Visa projekt /
+4. Lägga till todo i projekt 
+5. Ta bort todo från projekt
+6. Markera todo som avklarad
+7. Ändra existerande projekt
+8. Radera projekt
+9. css????
+
+Användare
+
+Projekt
+
+Todo
+
+
+Projekts link todo
+vart är todo???
+
+ideal: 
+
+Projekts
+	todo

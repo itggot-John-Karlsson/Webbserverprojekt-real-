@@ -1,0 +1,7 @@
+start site x
+register ppl x
+login x
+loopa in users in i projects/#{id} ?
+skapa projects(exempel se register user ?
+hur kommer man in i todo? loopa in project in i user site. x
+Project länk --> todos ?

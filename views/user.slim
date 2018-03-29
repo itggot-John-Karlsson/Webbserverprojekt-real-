@@ -1,0 +1,17 @@
+h1 welcome x here are your projekts
+
+-for pro in @projekts
+    
+    a[href="/users/#{@user[0]}/projects/#{pro[0]}"]= pro[1]
+
+
+h1 Create new projekt
+
+form action="/regprojekt" method="post"
+    input type="text" placeholder="Name"name="regprojek"
+    input type="number" placeholder="user_id" name="user_id"
+    input type="text" placeholder="Set Due Date" name="duedate"
+    button type="submit" Create!
+
+form action="/logout" method="post"
+    button type="submit" logout

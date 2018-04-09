@@ -5,7 +5,7 @@ class Steady < Sinatra::Base
     get '/' do
 
         if session[:user]
-            redirect '/projects/:id'
+            redirect '/users/:id'
         
         end
         slim :start
@@ -41,7 +41,7 @@ class Steady < Sinatra::Base
         if session[:user_id] == params["id"].to_i
             id = params['id']
             db = SQLite3::Database.open ('db/projekting.db')
-            @user = db.execute('SELECT name FROM users WHERE id IS ?' , id)[0][0]
+            @user = db.execute('SELECT * FROM users WHERE id IS ?' , id)[0][0]
             @projekts = db.execute('SELECT * FROM projekts WHERE user_id IS ?', id)
             slim :'user'
         else
@@ -49,9 +49,10 @@ class Steady < Sinatra::Base
         end
     end
 
-    get '/users/:user_id/projects/:id/' do
+    get '/users/:orange/projects/:id' do
+        id = params['id']
         db = SQLite3::Database.open ('db/projekting.db')
-        @todo = db.execute('SELECT * FROM')
+        @todo = db.execute('SELECT * FROM todo WHERE projekt_id IS ?', id)
         slim :'todd'
     end
 
@@ -66,10 +67,24 @@ class Steady < Sinatra::Base
             hopp = params['duedate']
             db = SQLite3::Database.open ('db/projekting.db')
             @projektcreate = db.execute('INSERT INTO projekts (name, user_id, due_date) VALUES (?, ?, ?)', [hej, stopp, hopp])
-            redirect '/projects/:id'
-      #  else
-       #     redirect '/'
+            redirect '/users/:id'
+        else
+            redirect '/'
         end
     end
+    
+    post '/regtodo' do
+        if session[:projekt_id] != nil    
+            ro = params['projekt_id']
+            bo = params['true/false']
+            jo = params['todotext']
+            db = SQLite3::Database.open ('db/projekting.db')
+            @ctodo = db.execute('INSERT INTO todo (projekt_id, finished, text) VALUES (?, ?, ?)', [ro, bo, jo])
+            redirect '/users/:orange/projects/:id'
+        else
+            redirect '/'
+        end
+    end
+
+
 end
-        

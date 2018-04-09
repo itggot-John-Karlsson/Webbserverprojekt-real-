@@ -1,0 +1,12 @@
+h1 hej
+
+-for hej in @todo
+
+    h2 = hej[3]
+    h3 = hej[2]
+
+form action="/regtodo" method="post"
+    input type="text" placeholder="What do you need to do?" name="todotext"
+    input type="text" placeholder="t/f" name="true/false"
+    input type="text" placeholder="project id" name="projekt_id"
+    button type="submit" Create

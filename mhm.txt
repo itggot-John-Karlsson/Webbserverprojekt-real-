@@ -2,10 +2,9 @@
 2. Loggain användare /
 3. Skapa projekt /
 3. Visa projekt /
-4. Lägga till todo i projekt 
-5. Markera todo som avklarad
-6. Ändra existerande projekt
-7. Radera projekt
+4. Lägga till todo i projekt / 
+5. Markera todo som avklarad /
+7. Radera projekt /
 8. css????
 
 Användare
@@ -14,11 +13,3 @@ Projekt
 
 Todo
 
-
-Projekts link todo
-vart är todo???
-
-ideal: 
-
-Projekts
-	todo

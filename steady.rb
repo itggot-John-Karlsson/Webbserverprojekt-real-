@@ -34,7 +34,7 @@ class Steady < Sinatra::Base
         db = SQLite3::Database.open('db/projekting.db')
         password_hash = BCrypt::Password.create(newpassword)
         @registeruser = db.execute('INSERT INTO users (name, password) VALUES (?, ?)', [newusername, password_hash])
-        redirect '/' 
+        redirect back
     end
     
     get '/users/:id' do
@@ -67,23 +67,42 @@ class Steady < Sinatra::Base
             hopp = params['duedate']
             db = SQLite3::Database.open ('db/projekting.db')
             @projektcreate = db.execute('INSERT INTO projekts (name, user_id, due_date) VALUES (?, ?, ?)', [hej, stopp, hopp])
-            redirect '/users/:id'
+            redirect back
         else
             redirect '/'
         end
     end
     
     post '/regtodo' do
-        if session[:projekt_id] != nil    
+        if session[:user_id] != nil
             ro = params['projekt_id']
             bo = params['true/false']
             jo = params['todotext']
             db = SQLite3::Database.open ('db/projekting.db')
             @ctodo = db.execute('INSERT INTO todo (projekt_id, finished, text) VALUES (?, ?, ?)', [ro, bo, jo])
-            redirect '/users/:orange/projects/:id'
+            redirect back
         else
             redirect '/'
         end
+    
+    end
+
+    post '/delet' do
+        if session[:user_id] != nil
+            erase = params['delete']
+            db = SQLite3::Database.open ('db/projekting.db')
+            @delprojekt = db.execute('DELETE FROM projekts WHERE name = ?', erase)
+            redirect back
+        else
+            redirect '/'
+        end
+    end
+
+    post '/complete/:id' do
+        halloj = params['id']
+        db = SQLite3::Database.open ('db/projekting.db')
+        @check = db.execute('UPDATE todo SET finished = ? WHERE id = ? ', ['true', halloj])
+        redirect back
     end
 
 
